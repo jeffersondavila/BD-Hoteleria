@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_piso` (
   PRIMARY KEY (`PK_id_piso`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+INSERT INTO `tbl_piso` (`PK_id_piso`, `cantidad_habitaciones_piso`, `descripcion_piso`, `estado_piso`) VALUES ('1', '100', 'Habitaciones grandes', '1');
 
 -- -----------------------------------------------------
 -- Table `hoteleria`.`horario`
