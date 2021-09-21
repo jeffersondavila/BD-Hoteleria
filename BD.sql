@@ -104,9 +104,9 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_mantenimiento_habitacion` (
   `PK_id_habitacion` INT NOT NULL,
   `precio_habitacion` INT(45) NULL DEFAULT NULL,
   `PK_id_piso` INT NULL DEFAULT NULL,
-  `estado_habitacion` INT NULL DEFAULT NULL,
-  `estado_limpieza` INT NULL DEFAULT NULL,
-  `tipo_de_habitacion` VARCHAR(20) NULL DEFAULT NULL,
+  `estado_habitacion` TINYINT NULL DEFAULT NULL,
+  `estado_limpieza` TINYINT NULL DEFAULT NULL,
+  `tipo_de_habitacion` INT(5) NULL DEFAULT NULL,
   `cantidad_maxima_persona` INT(5) NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id_habitacion`),
   FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`))
