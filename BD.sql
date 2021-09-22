@@ -113,11 +113,11 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_mantenimiento_habitacion` (
   FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('1', '250', '1', '1','1', '1', '4');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('2', '250', '1', '1','1', '1', '1');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('3', '250', '1', '1','1', '2', '4');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('4', '250', '1', '1','1', '2', '1');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('5', '250', '1', '1','1', '2', '4');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('1', '250', '1', '0','1', '1', '5');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('2', '250', '4', '1','2', '1', '6');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('3', '250', '1', '0','1', '2', '7');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('4', '250', '4', '1','2', '2', '8');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('5', '250', '1', '0','1', '2', '9');
 
 -- -----------------------------------------------------
 -- Table `hoteleria`.`tbl_huespedes`
@@ -134,26 +134,26 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_huesped` (
    PRIMARY KEY (`PK_no_identificacion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('1', 'Alberto', 'Suarez', 'Mexicano', '12 calle', 'M', '12345678', '2000-6-28');
-INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('12', 'Luis Carlos', 'Chavez', 'Chino', '13 calle', 'M', '87654321', '2000-6-28');
-INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('123', 'Leonel', 'Gomez', 'Keniano', '14 calle', 'M', '123456789', '2000-6-28');
-INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('1234', 'Jefferson', 'Dominguez', 'Mexicano', '15 calle', 'M', '612345678', '2000-6-28');
-INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('12345', 'Gerson', 'Davila', 'Español', '16 calle', 'M', '1234585678', '2000-6-28');
+INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('1', 'Alberto', 'Suarez', 'Mexicano', 'alberto@gmail.com', 'M', '12345678', '2000-6-28');
+INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('12', 'Luis Carlos', 'lee', 'Guatemalteco', 'leeluis@gmail.com', 'M', '87654321', '2000-6-28');
+INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('123', 'Leonel', 'Domingues', 'Guatemalteco', 'leo@gmail.com', 'M', '123456789', '2000-6-28');
+INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('1234', 'Jefferson', 'Davila', 'Mexicano', 'jeff@gmail.com', 'M', '612345678', '2000-6-28');
+INSERT INTO `hoteleria`.`tbl_huesped` (`PK_no_identificacion`, `nombre_huesped`, `apellido_huesped`, `nacionalidad_huesped`, `direccion_huesped`, `sexo_huesped`, `telefono_huesped`, `cumpleaños_huesped`) VALUES ('12345', 'Gerson', 'Meda', 'Español', 'meda@gmail.com', 'M', '1234585678', '2000-6-28');
 
 -- -----------------------------------------------------
 -- Table `hoteleria`.`tbl_menu_restaurante`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_menu_restaurante` (
-  `PK_codigo_correlativo` INT NOT NULL AUTO_INCREMENT,
+  `PK_codigo_correlativo` INT NOT NULL,
   `nombre_plato` VARCHAR(100) NULL DEFAULT NULL,
-  `nombre_ingrediente` VARCHAR(100) NULL DEFAULT NULL,
-  `cantidad_ingrediente` INT DEFAULT NULL,
-  `medida_ingrediente` VARCHAR(100) NULL DEFAULT NULL,
+  `descripcion_plato` VARCHAR(100) NULL DEFAULT NULL,
+  `precio_plato` INT NOT NULL,
+  `estado_plato` TINYINT NULL DEFAULT NULL,
    PRIMARY KEY (`PK_codigo_correlativo`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `nombre_ingrediente`, `cantidad_ingrediente`, `medida_ingrediente`) VALUES ('1', 'pizza', 'tomate', '1', 'libra');
-INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `nombre_ingrediente`, `cantidad_ingrediente`, `medida_ingrediente`) VALUES ('12', 'pizza', 'queso', '1', 'libra');
-INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `nombre_ingrediente`, `cantidad_ingrediente`, `medida_ingrediente`) VALUES ('123', 'pizza', 'jamon', '1', 'libra');
-INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `nombre_ingrediente`, `cantidad_ingrediente`, `medida_ingrediente`) VALUES ('1234', 'pizza', 'piña', '1', 'libra');
-INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `nombre_ingrediente`, `cantidad_ingrediente`, `medida_ingrediente`) VALUES ('12345', 'Pasta', 'queso', '1', 'libra');
+INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `descripcion_plato`, `precio_plato`, `estado_plato`) VALUES ('1', 'pizza', 'pizza clasica', '50', '1');
+INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `descripcion_plato`, `precio_plato`, `estado_plato`) VALUES ('12', 'burrito', 'burrito clasico', '20', '1');
+INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `descripcion_plato`, `precio_plato`, `estado_plato`) VALUES ('123', 'hamburguesa', 'hamburguesa clasica', '30', '0');
+INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `descripcion_plato`, `precio_plato`, `estado_plato`) VALUES ('1234', 'lasaña', 'lasaña clasica', '20', '0');
+INSERT INTO `hoteleria`.`tbl_menu_restaurante` (`PK_codigo_correlativo`, `nombre_plato`, `descripcion_plato`, `precio_plato`, `estado_plato`) VALUES ('12345', 'tacos', 'tacos clasicos', '10', '0');
