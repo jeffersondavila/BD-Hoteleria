@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_piso` (
   PRIMARY KEY (`PK_id_piso`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+INSERT INTO `tbl_piso` (`PK_id_piso`, `cantidad_habitaciones_piso`, `descripcion_piso`, `estado_piso`) VALUES ('1', '100', 'Habitaciones grandes', '1');
 
 -- -----------------------------------------------------
 -- Table `hoteleria`.`horario`
@@ -98,25 +99,25 @@ INSERT INTO `tbl_servicio` (`PK_id_servicio`, `nombre_servicio`, `descripcion_se
 INSERT INTO `tbl_servicio` (`PK_id_servicio`, `nombre_servicio`, `descripcion_servicio`, `precio_servicio`, `tipo_servicio`, `estado_servicio`) VALUES ('5', 'Sector para Fumadores', 'Amplio sector para personas puedan fumar tranquilamente sin molestar a otras personas', '150', '2', '1');
 
 -- -----------------------------------------------------
--- Table `hoteleria`.`tbl_mantenimiento_habitaciones`
+-- Table `hoteleria`.`tbl_mantenimiento_habitacion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_mantenimiento_habitaciones` (
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_mantenimiento_habitacion` (
   `PK_id_habitacion` INT NOT NULL,
-  `precio_habitacion` int(45) NULL DEFAULT NULL,
-  `piso_habitaciones` INT NULL DEFAULT NULL,
-  `estado_habitacion` INT NULL DEFAULT NULL,
-  `estado_limpieza` INT NULL DEFAULT NULL,
-  `tipo_de_habitacion` VARCHAR(20) NULL DEFAULT NULL,
-  `cantidad_maxima_pers` INT(5) null DEFAULT NULL,
+  `precio_habitacion` INT(45) NULL DEFAULT NULL,
+  `PK_id_piso` INT NULL DEFAULT NULL,
+  `estado_habitacion` TINYINT NULL DEFAULT NULL,
+  `estado_limpieza` TINYINT NULL DEFAULT NULL,
+  `tipo_de_habitacion` INT(5) NULL DEFAULT NULL,
+  `cantidad_maxima_persona` INT(5) NULL DEFAULT NULL,
   PRIMARY KEY (`PK_id_habitacion`),
-  FOREIGN KEY (`piso_habitaciones`) REFERENCES `tbl_piso_hotel`(`PK_numero_piso`))
+  FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitaciones` (`PK_id_habitacion`, `precio_habitacion`, `piso_habitaciones`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_pers`) VALUES ('1', '250', '1', '1','1', 'Familiar', '4');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitaciones` (`PK_id_habitacion`, `precio_habitacion`, `piso_habitaciones`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_pers`) VALUES ('2', '250', '1', '1','1', 'Individual', '1');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitaciones` (`PK_id_habitacion`, `precio_habitacion`, `piso_habitaciones`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_pers`) VALUES ('3', '250', '1', '1','1', 'Familiar', '4');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitaciones` (`PK_id_habitacion`, `precio_habitacion`, `piso_habitaciones`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_pers`) VALUES ('4', '250', '1', '1','1', 'Individual','1');
-INSERT INTO `hoteleria`.`tbl_mantenimiento_habitaciones` (`PK_id_habitacion`, `precio_habitacion`, `piso_habitaciones`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_pers`) VALUES ('5', '250', '1', '1','1', 'Familiar','4');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('1', '250', '1', '1','1', '1', '4');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('2', '250', '1', '1','1', '1', '1');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('3', '250', '1', '1','1', '2', '4');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('4', '250', '1', '1','1', '2', '1');
+INSERT INTO `hoteleria`.`tbl_mantenimiento_habitacion` (`PK_id_habitacion`, `precio_habitacion`, `PK_id_piso`, `estado_habitacion`,`estado_limpieza`, `tipo_de_habitacion`,`cantidad_maxima_persona`) VALUES ('5', '250', '1', '1','1', '2', '4');
 
 -- -----------------------------------------------------
 -- Table `hoteleria`.`tbl_huespedes`
@@ -129,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_huesped` (
   `direccion_huesped` VARCHAR(100) NULL DEFAULT NULL,
   `sexo_huesped` VARCHAR(5) NULL DEFAULT NULL,
   `telefono_huesped` INT DEFAULT NULL,
-  `cumpleaños_huesped` date NULL DEFAULT NULL,
+  `cumpleaños_huesped` DATE NULL DEFAULT NULL,
    PRIMARY KEY (`PK_no_identificacion`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
