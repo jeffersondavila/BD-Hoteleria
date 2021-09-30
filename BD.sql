@@ -231,6 +231,18 @@ VALUES
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
   -- -----------------------------------------------------
+  -- Table `hoteleria`.`tbl_detalle_reservacion`
+  -- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_detalle_reservacion` (
+    `Pk_correlativo_detalle` INT AUTO_INCREMENT NOT NULL,
+    `PK_id_detalle` INT NOT NULL,
+    `id_tarifa_detalle` INT NOT NULL,
+    `sub_total_detalle` FLOAT NOT NULL,
+    PRIMARY KEY (`Pk_correlativo_detalle`),
+    FOREIGN KEY (id_tarifa_detalle) REFERENCES tbl_tarifa(PK_id_tarifa)
+  ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+  
+  -- -----------------------------------------------------
   -- Table `hoteleria`.`tbl_reservacion`
   -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_reservacion` (
@@ -242,21 +254,61 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_reservacion` (
     `cantidad_personas_reservacion` INT NOT NULL,
     `total_reservacion` INT NOT NULL,
     `estado_reservacion` TINYINT NULL DEFAULT NULL,
-    PRIMARY KEY (`PK_idDetalle_reservacion`, `PK_id_reservacion`),   
-    FOREIGN KEY (identificacion_huesped_reservacion) REFERENCES tbl_huesped(PK_no_identificacion)
+    PRIMARY KEY (`PK_id_reservacion`),   
+    FOREIGN KEY (identificacion_huesped_reservacion) REFERENCES tbl_huesped(PK_no_identificacion),
+    FOREIGN KEY (PK_idDetalle_reservacion) REFERENCES tbl_detalle_reservacion(Pk_correlativo_detalle)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `hoteleria`.`tbl_solicitud_viaje`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_solicitud_viaje`(
+	`PK_id_solicitud` INT NOT NULL,
+    `PK_id_reservacion` INT NOT NULL,
+    `id_destino`INT NOT NULL,
+    `id_transporte` INT NOT NULL,
+    `precio_viaje` INT NOT NULL,
+    PRIMARY KEY (`Pk_id_solicitud`),
+    FOREIGN KEY (PK_id_reservacion) REFERENCES tbl_reservacion(PK_id_reservacion)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
-  -- -----------------------------------------------------
-  -- Table `hoteleria`.`tbl_detalle_reservacion`
-  -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_detalle_reservacion` (
-    `Pk_correlativo_detalle` INT AUTO_INCREMENT NOT NULL,
-    `PK_id_detalle` INT NOT NULL,
-    `id_tarifa_detalle` INT NOT NULL,
-    `sub_total_detalle` FLOAT NOT NULL,
-    PRIMARY KEY (`Pk_correlativo_detalle`),
-    FOREIGN KEY (id_tarifa_detalle) REFERENCES tbl_tarifa(PK_id_tarifa),
-    FOREIGN KEY (PK_id_detalle) REFERENCES tbl_reservacion(PK_idDetalle_reservacion)
-  ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+-- -----------------------------------------------------
+-- Table `hoteleria`.`tbl_asignar_servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_asignar_servicio`(
+	`PK_id_asignar_servicio` INT NOT NULL,
+    `PK_id_habitacion` INT NOT NULL,
+    `PK_id_servicio`INT NOT NULL,
+    PRIMARY KEY (`PK_id_asignar_servicio`),
+    FOREIGN KEY (PK_id_habitacion) REFERENCES tbl_mantenimiento_habitacion(PK_id_habitacion),
+    FOREIGN KEY (PK_id_servicio) REFERENCES tbl_servicio(PK_id_servicio)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `hoteleria`.`tbl_factura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_factura`(
+	`PK_id_factura` INT NOT NULL,
+    `fecha_emision_factura` DATE NOT NULL,
+    `PK_id_reservacion` INT NOT NULL,
+    `PK_id_asignar_servicio` INT NOT NULL,
+    `PK_id_impuesto` INT NOT NULL,
+    PRIMARY KEY (`PK_id_factura`),
+    FOREIGN KEY (PK_id_reservacion) REFERENCES tbl_reservacion(PK_id_reservacion)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+
+-- -----------------------------------------------------
+-- Table `hoteleria`.`tbl_menu_orden`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_menu_orden`(
+	`PK_id_orden` INT NOT NULL,
+    `PK_id_menu` INT NOT NULL,
+    `cantidad_orden` INT NOT NULL,
+    `no_mesa` INT NOT NULL,
+    `horario_orden` VARCHAR(10) NOT NULL,
+    `fecha_orden` DATE NOT NULL,
+    `PK_id_metodo_pago` INT NOT NULL,
+    `PK_id_habitacion` INT DEFAULT NULL,
+    `total_orden` INT NOT NULL,
+    PRIMARY KEY (`PK_id_orden`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
