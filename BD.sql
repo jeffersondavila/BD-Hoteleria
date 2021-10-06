@@ -205,14 +205,15 @@ VALUES
   ('123','hamburguesa','hamburguesa clasica','30','0'),
   ('1234', 'lasaña', 'lasaña clasica', '20', '0'),
   ('12345', 'tacos', 'tacos clasicos', '10', '0');
-
+  
   -- -----------------------------------------------------
   -- Table `hoteleria`.`tbl_tarifa`
   -- -----------------------------------------------------
   CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_tarifa` (
     `PK_id_tarifa` INT NOT NULL,
     `id_habitacion_tarifa` INT NOT NULL,
-    `sub_total_tarifa` FLOAT NOT NULL,
+    `nombre_tarifa` VARCHAR(60) NULL DEFAULT NULL,
+    `sub_total_tarifa` FLOAT DEFAULT NULL,
     PRIMARY KEY (`PK_id_tarifa`),
     FOREIGN KEY (id_habitacion_tarifa) REFERENCES tbl_mantenimiento_habitacion(PK_id_habitacion)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
@@ -222,32 +223,19 @@ VALUES
   -- -----------------------------------------------------
   CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_paquete` (
     `PK_correlativo_paquete` INT AUTO_INCREMENT NOT NULL,
-    `PK_id_tarifa_paquete` INT NOT NULL,
+    `id_tarifa_paquete` INT NOT NULL,
     `id_servicio_paquete` INT NOT NULL,
-    `sub_total_paquete` FLOAT NOT NULL,
+    `sub_total_paquete` FLOAT DEFAULT NULL,
     PRIMARY KEY (`PK_correlativo_paquete`),
-    FOREIGN KEY (PK_id_tarifa_paquete) REFERENCES tbl_tarifa(PK_id_tarifa),
-    FOREIGN KEY (PK_id_tarifa_paquete) REFERENCES tbl_servicio(PK_id_servicio)
+    FOREIGN KEY (id_tarifa_paquete) REFERENCES tbl_tarifa(PK_id_tarifa),
+    FOREIGN KEY (id_servicio_paquete) REFERENCES tbl_servicio(PK_id_servicio)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
-  -- -----------------------------------------------------
-  -- Table `hoteleria`.`tbl_detalle_reservacion`
-  -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_detalle_reservacion` (
-    `Pk_correlativo_detalle` INT AUTO_INCREMENT NOT NULL,
-    `PK_id_detalle` INT NOT NULL,
-    `id_tarifa_detalle` INT NOT NULL,
-    `sub_total_detalle` FLOAT NOT NULL,
-    PRIMARY KEY (`Pk_correlativo_detalle`),
-    FOREIGN KEY (id_tarifa_detalle) REFERENCES tbl_tarifa(PK_id_tarifa)
-  ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
-  
   -- -----------------------------------------------------
   -- Table `hoteleria`.`tbl_reservacion`
   -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_reservacion` (
     `PK_id_reservacion` INT NOT NULL,
-    `PK_idDetalle_reservacion` INT NOT NULL,
     `fecha_entrada_reservacion` DATE NOT NULL,
     `fecha_salida_reservacion` DATE NOT NULL,
     `identificacion_huesped_reservacion` INT NOT NULL,
@@ -255,8 +243,20 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_reservacion` (
     `total_reservacion` INT NOT NULL,
     `estado_reservacion` TINYINT NULL DEFAULT NULL,
     PRIMARY KEY (`PK_id_reservacion`),   
-    FOREIGN KEY (identificacion_huesped_reservacion) REFERENCES tbl_huesped(PK_no_identificacion),
-    FOREIGN KEY (PK_idDetalle_reservacion) REFERENCES tbl_detalle_reservacion(Pk_correlativo_detalle)
+    FOREIGN KEY (identificacion_huesped_reservacion) REFERENCES tbl_huesped(PK_no_identificacion)
+  ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+
+  -- -----------------------------------------------------
+  -- Table `hoteleria`.`tbl_detalle_reservacion`
+  -- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_detalle_reservacion` (
+    `Pk_correlativo_detalle` INT AUTO_INCREMENT NOT NULL,
+    `id_reservacion_detalle` INT NOT NULL,
+    `id_tarifa_detalle` INT NOT NULL,
+    `sub_total_detalle` FLOAT NOT NULL,
+    PRIMARY KEY (`Pk_correlativo_detalle`),
+    FOREIGN KEY (id_tarifa_detalle) REFERENCES tbl_tarifa(PK_id_tarifa),
+    FOREIGN KEY (id_reservacion_detalle) REFERENCES tbl_reservacion(PK_id_reservacion)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
