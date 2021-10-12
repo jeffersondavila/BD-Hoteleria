@@ -192,40 +192,33 @@ VALUES
     PRIMARY KEY (`PK_codigo_correlativo`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 INSERT INTO
-  `hoteleria`.`tbl_menu_restaurante` (
-    `PK_codigo_correlativo`,
-    `nombre_plato`,
-    `descripcion_plato`,
-    `precio_plato`,
-    `estado_plato`
-  )
+  `hoteleria`.`tbl_menu_restaurante`
 VALUES
   ('1', 'pizza', 'pizza clasica', '50', '1'),
   ('12', 'burrito', 'burrito clasico', '20', '1'),
   ('123','hamburguesa','hamburguesa clasica','30','0'),
   ('1234', 'lasaña', 'lasaña clasica', '20', '0'),
   ('12345', 'tacos', 'tacos clasicos', '10', '0');
-  
+
   -- -----------------------------------------------------
   -- Table `hoteleria`.`tbl_tarifa`
   -- -----------------------------------------------------
   CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_tarifa` (
-    `PK_id_tarifa` INT NOT NULL,
+    `PK_id_tarifa` INT AUTO_INCREMENT NOT NULL,
     `id_habitacion_tarifa` INT NOT NULL,
     `nombre_tarifa` VARCHAR(60) NULL DEFAULT NULL,
-    `sub_total_tarifa` FLOAT DEFAULT NULL,
+    `estado_tarifa` TINYINT NULL DEFAULT NULL,
     PRIMARY KEY (`PK_id_tarifa`),
     FOREIGN KEY (id_habitacion_tarifa) REFERENCES tbl_mantenimiento_habitacion(PK_id_habitacion)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
--- -----------------------------------------------------
+  -- -----------------------------------------------------
   -- Table `hoteleria`.`tbl_paquete_servicio`
   -- -----------------------------------------------------
-  CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_paquete` (
+  CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_paquete_servicios` (
     `PK_correlativo_paquete` INT AUTO_INCREMENT NOT NULL,
     `id_tarifa_paquete` INT NOT NULL,
     `id_servicio_paquete` INT NOT NULL,
-    `sub_total_paquete` FLOAT DEFAULT NULL,
     PRIMARY KEY (`PK_correlativo_paquete`),
     FOREIGN KEY (id_tarifa_paquete) REFERENCES tbl_tarifa(PK_id_tarifa),
     FOREIGN KEY (id_servicio_paquete) REFERENCES tbl_servicio(PK_id_servicio)
