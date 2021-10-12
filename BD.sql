@@ -15,12 +15,7 @@ USE `hoteleria`;
     PRIMARY KEY (`PK_id_piso`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 INSERT INTO
-  `hoteleria`.`tbl_piso` (
-    `PK_id_piso`,
-    `cantidad_habitaciones_piso`,
-    `descripcion_piso`,
-    `estado_piso`
-  )
+  `hoteleria`.`tbl_piso`
 VALUES
   ('1', '100', 'Habitaciones grandes', '1');
 
@@ -76,12 +71,7 @@ VALUES
     PRIMARY KEY (`PK_id_metodo`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 INSERT INTO
-  `hoteleria`.`tbl_metodo_de_pago` (
-    `PK_id_metodo`,
-    `nombre_metodo`,
-    `descripcion_metodo`,
-    `estado_metodo`
-  )
+  `hoteleria`.`tbl_metodo_de_pago`
 VALUES
   ('1', 'Tarjeta', 'Pago con tarjeta', '1'),
   ('2', 'Efectivo', 'Pago en efectivo', '1'),
@@ -102,14 +92,7 @@ VALUES
     PRIMARY KEY (`PK_id_servicio`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 INSERT INTO
-  `tbl_servicio` (
-    `PK_id_servicio`,
-    `nombre_servicio`,
-    `descripcion_servicio`,
-    `precio_servicio`,
-    `tipo_servicio`,
-    `estado_servicio`
-  )
+  `hoteleria`.`tbl_servicio`
 VALUES
   ('1', 'Internet', '50mg', '150', '1', '1'),
   ('2','Niñera','Cuido de niños menores de 10 años','250','2','1'),
@@ -132,15 +115,7 @@ VALUES
     FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 INSERT INTO
-  `tbl_mantenimiento_habitacion` (
-    `PK_id_habitacion`,
-    `precio_habitacion`,
-    `PK_id_piso`,
-    `estado_habitacion`,
-    `estado_limpieza`,
-    `tipo_de_habitacion`,
-    `cantidad_maxima_persona`
-  )
+  `hoteleria`.`tbl_mantenimiento_habitacion`
 VALUES
   ('1', '250', '1', '0', '1', '1', '5'),
   ('2', '250', '4', '1', '2', '1', '6'),
@@ -163,16 +138,7 @@ VALUES
     PRIMARY KEY (`PK_no_identificacion`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 INSERT INTO
-  `hoteleria`.`tbl_huesped` (
-    `PK_no_identificacion`,
-    `nombre_huesped`,
-    `apellido_huesped`,
-    `nacionalidad_huesped`,
-    `direccion_huesped`,
-    `sexo_huesped`,
-    `telefono_huesped`,
-    `cumpleaños_huesped`
-  )
+  `hoteleria`.`tbl_huesped`
 VALUES
   ('1','Alberto','Suarez','Mexicano','alberto@gmail.com','M','12345678','2000-6-28'),
   ('12','Luis Carlos','lee','Guatemalteco','leeluis@gmail.com','M','87654321','2000-6-28'),
