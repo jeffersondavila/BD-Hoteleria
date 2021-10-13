@@ -32,34 +32,6 @@ VALUES
     PRIMARY KEY (`PK_id_horario`)
   ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
-  -- -----------------------------------------------------
-  -- Table `hoteleria`.`ama_de_llaves`
-  -- -----------------------------------------------------
-  CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_ama_de_llave` (
-    `PK_id_ama_de_llave` INT NOT NULL,
-    `nombre_ama_de_llave` VARCHAR(45) NULL DEFAULT NULL,
-    `apellido_ama_de_llave` VARCHAR(45) NULL DEFAULT NULL,
-    `piso_ama_de_llave` INT NULL DEFAULT NULL,
-    `horario_ama_de_llave` INT NULL DEFAULT NULL,
-    `descripcion_ama_de_llave` VARCHAR(200) NULL DEFAULT NULL,
-    `estado_ama_de_llave` TINYINT NULL DEFAULT NULL,
-    PRIMARY KEY (`PK_id_ama_de_llave`),
-    FOREIGN KEY (`piso_ama_de_llave`) REFERENCES `tbl_piso`(`PK_id_piso`),
-    FOREIGN KEY (`horario_ama_de_llave`) REFERENCES `tbl_horario`(`PK_id_horario`)
-  ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
-
- -- -----------------------------------------------------
-  -- Table `hoteleria`.`impuesto`
-  -- -----------------------------------------------------
-  CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_impuesto` (
-    `PK_id_impuesto` INT NOT NULL,
-    `nombre_impuesto` VARCHAR(45) NULL DEFAULT NULL,
-    `valor_impuesto` DECIMAL NULL DEFAULT NULL,
-    `descripcion_impuesto` VARCHAR(200) NULL DEFAULT NULL,
-    `estado_impuesto` TINYINT NULL DEFAULT NULL,
-    PRIMARY KEY (`PK_id_impuesto`)
-  ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
-
 -- -----------------------------------------------------
   -- Table `hoteleria`.`tbl_metodo_de_pago`
   -- -----------------------------------------------------
@@ -232,19 +204,6 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_solicitud_viaje`(
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
--- Table `hoteleria`.`tbl_factura`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_factura`(
-	`PK_id_factura` INT NOT NULL,
-    `fecha_emision_factura` DATE NOT NULL,
-    `PK_id_reservacion` INT NOT NULL,
-    `PK_id_asignar_servicio` INT NOT NULL,
-    `PK_id_impuesto` INT NOT NULL,
-    PRIMARY KEY (`PK_id_factura`),
-    FOREIGN KEY (PK_id_reservacion) REFERENCES tbl_reservacion(PK_id_reservacion)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
-
--- -----------------------------------------------------
 -- Table `hoteleria`.`tbl_menu_orden`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_menu_orden`(
@@ -260,3 +219,14 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_menu_orden`(
     PRIMARY KEY (`PK_id_orden`),
     FOREIGN KEY (PK_id_menu) REFERENCES tbl_menu_restaurante(PK_codigo_correlativo)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+
+CREATE TABLE `hoteleria`.`tbl_asignacion_ama_de_llave` (
+`PK_id_asignacion_ama_de_llave` INT NOT NULL,
+`PK_id_puesto` INT NOT NULL,
+`PK_id_piso` INT NOT NULL,
+`PK_id_horario` INT NOT NULL,
+PRIMARY KEY (`PK_id_asignacion_ama_de_llave`),
+FOREIGN KEY (`PK_id_puesto`) REFERENCES `tbl_puesto`(`PK_id_puesto`),
+FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`),
+FOREIGN KEY (`PK_id_horario`) REFERENCES `tbl_horario`(`PK_id_horario`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
