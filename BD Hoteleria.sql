@@ -219,14 +219,24 @@ CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_menu_orden`(
     PRIMARY KEY (`PK_id_orden`),
     FOREIGN KEY (PK_id_menu) REFERENCES tbl_menu_restaurante(PK_codigo_correlativo)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8;
+/*
+CREATE TABLE `hoteleria`.`tbl_asignacion_gobernanta` (
+`PK_id_asignacion_gobernanta` INT NOT NULL,
+`PK_id_gobernanta` INT NOT NULL,
+`PK_id_ama_de_llave` INT NOT NULL,
+PRIMARY KEY (`PK_id_asignacion_gobernanta`),
+FOREIGN KEY (`PK_id_gobernanta`) REFERENCES `tbl_puesto`(`PK_id_puesto`),
+FOREIGN KEY (`PK_id_ama_de_llave`) REFERENCES `tbl_puesto`(`PK_id_puesto`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-CREATE TABLE `hoteleria`.`tbl_asignacion_ama_de_llave` (
-`PK_id_asignacion_ama_de_llave` INT NOT NULL,
-`PK_id_puesto` INT NOT NULL,
+CREATE TABLE `hoteleria`.`tbl_asignacion_limpieza` (
+`PK_id_asignacion_limpieza` INT NOT NULL,
+`PK_id_asignacion_gobernanta` INT NOT NULL,
 `PK_id_piso` INT NOT NULL,
 `PK_id_horario` INT NOT NULL,
 PRIMARY KEY (`PK_id_asignacion_ama_de_llave`),
-FOREIGN KEY (`PK_id_puesto`) REFERENCES `tbl_puesto`(`PK_id_puesto`),
+FOREIGN KEY (`PK_id_asignacion_gobernanta`) REFERENCES `tbl_asignacion_gobernanta`(`PK_id_asignacion_gobernanta`),
 FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`),
 FOREIGN KEY (`PK_id_horario`) REFERENCES `tbl_horario`(`PK_id_horario`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
+*/
