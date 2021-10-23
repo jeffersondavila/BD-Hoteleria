@@ -240,3 +240,25 @@ FOREIGN KEY (`PK_id_piso`) REFERENCES `tbl_piso`(`PK_id_piso`),
 FOREIGN KEY (`PK_id_horario`) REFERENCES `tbl_horario`(`PK_id_horario`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 */
+
+-- -----------------------------------------------------
+-- Table `hoteleria`.`tbl_objetosperdidos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `hoteleria`.`tbl_objeto_perdido` (
+  `PK_id_objeto` INT NOT NULL AUTO_INCREMENT,
+  `PK_id_habitacion` INT DEFAULT NULL,
+  `PK_id_ama_de_llaves` INT DEFAULT NULL,
+  `fecha_encontrado` date NULL DEFAULT NULL,
+  `objeto` VARCHAR(50) NULL DEFAULT NULL,
+  `identificacion` VARCHAR(50) NULL DEFAULT NULL,
+  `nombre` VARCHAR(50) NULL DEFAULT NULL,
+  `estado` TINYINT NULL DEFAULT NULL,
+  PRIMARY KEY (`PK_id_objeto`),
+    FOREIGN KEY (`PK_id_habitacion`) REFERENCES `tbl_mantenimiento_habitacion`(`PK_id_habitacion`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+INSERT INTO `hoteleria`.`tbl_objeto_perdido` (`PK_id_objeto`, `PK_id_habitacion`, `PK_id_ama_de_llaves`, `fecha_encontrado`, `objeto`, `identificacion`, `nombre`, `estado`) VALUES ('1', '1', '1', '2021-04-17', 'Telefono', '12345678', 'Luis', '2');
+INSERT INTO `hoteleria`.`tbl_objeto_perdido` (`PK_id_objeto`, `PK_id_habitacion`, `PK_id_ama_de_llaves`, `fecha_encontrado`, `objeto`, `identificacion`, `nombre`, `estado`) VALUES ('2', '1', '1', '2021-04-18', 'Juguete', 'null', 'null', '1');
+INSERT INTO `hoteleria`.`tbl_objeto_perdido` (`PK_id_objeto`, `PK_id_habitacion`, `PK_id_ama_de_llaves`, `fecha_encontrado`, `objeto`, `identificacion`, `nombre`, `estado`) VALUES ('3', '1', '1', '2021-04-19', 'Computadora', 'null', 'null', '1');
+INSERT INTO `hoteleria`.`tbl_objeto_perdido` (`PK_id_objeto`, `PK_id_habitacion`, `PK_id_ama_de_llaves`, `fecha_encontrado`, `objeto`, `identificacion`, `nombre`, `estado`) VALUES ('4', '1', '1', '2021-04-20', 'Telefono', 'null', 'null', '1');
+INSERT INTO `hoteleria`.`tbl_objeto_perdido` (`PK_id_objeto`, `PK_id_habitacion`, `PK_id_ama_de_llaves`, `fecha_encontrado`, `objeto`, `identificacion`, `nombre`, `estado`) VALUES ('5', '1', '1', '2021-04-21', 'Audifonos', '124345678', 'Juan', '2');
